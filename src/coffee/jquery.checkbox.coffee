@@ -24,22 +24,28 @@
         @[@options.action]()
 
     Checkbox.DEFAULTS =
+      eventName:  'checkbox'
       toggle:     'checkbox'
       wrap:       'label'
       htmlClone:  '<ins />'
       class:      'checkbox-clone'
 
     load: () ->
-      @randomID = @options.toggle + '_' + Math.floor((Math.random() * 1000000) + 10)
 
       if @element[0].style.display != 'none' || !@element.is '.hidden'
+        @randomID = @options.toggle + '_' + Math.floor((Math.random() * 1000000) + 10)
         @initialize()
 
     click: () ->
       if @value == true
         @uncheck()
       else if @value == false
-        @activate()
+        @check()
+
+      @eventListener('toggle', @options.action)
+
+    toggle: () ->
+      @click()
 
     initialize: () ->
       @clone()
@@ -55,9 +61,8 @@
         class: @options.class + if @value then ' checked' else ''
         'data-toggle': 'checkbox'
         'data-id' : @randomID
-      $( @options.htmlClone, cloneProperties ).insertAfter @element
-
-      console.log @parent
+        'tabindex': 1
+      $( @options.htmlClone, cloneProperties ).one().insertAfter @element
 
     changeState: () ->
       if @value == true
@@ -68,27 +73,38 @@
     check: () ->
       @element.attr 'checked', 'checked'
       @value = true
+
       if @element.val == 'on' || @element.val == 'off'
         @element.val('on')
       else
         @element.val(1)
+
       $('#' + @options.id).addClass('checked')
+      @eventListener('checked', @options.action)
 
     uncheck: () ->
       @element.removeAttr 'checked'
       @value = false
+
       if @element.val == 'on' || @element.val == 'off'
         @element.val('off')
       else
         @element.val(0)
+
       $('#' + @options.id).removeClass('checked')
+      @eventListener('unchecked', @options.action)
+
+    eventListener: (name, action) ->
+      event = $.Event name + '.' + @options.eventName
+      event.checkbox = @options
+      @element.trigger event
+      return
 
 
   Plugin = (option) ->
     action = if typeof arguments[0] == 'string' && typeof arguments[0] != 'object' && typeof arguments[0] != 'undefined' then arguments[0] else undefined
     @.each () ->
       $this = $ this
-      options = $.extend {}, Checkbox.DEFAULTS, option
       if typeof action != 'undefined'
         $this.data('action', action)
       else
@@ -130,4 +146,5 @@
       initialize target, 'click', data
 
   $(elements).on 'toggle.checkbox', (event) ->
+    #console.log(event)
 ).call(this)
