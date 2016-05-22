@@ -1,0 +1,25 @@
+{
+  "name": "jquery-checkbox",
+  "description": "This is a jQuery Plugin to manipulate checkboxes and radiobuttons",
+  "main": "index.js",
+  "authors": [
+    "Daniel Pfisterer <info@daniel-pfisterer.de>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "jquery",
+    "checkbox",
+    "radiobutton"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.4"
+  }
+}

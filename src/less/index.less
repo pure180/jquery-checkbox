@@ -1,0 +1,24 @@
+@bg: #e2e2e2;
+@border: 1px solid darken(@bg, 15%);
+
+[type="checkbox"] {
+  display: none;
+}
+
+.checkbox {
+  &-label {
+
+  }
+  &-clone {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background-color: @bg;
+    border-radius: 3px;
+    border: @border;
+    cursor: pointer;
+    &:hover {
+      background-color: darken(@bg, 10%);
+    }
+  }
+}
