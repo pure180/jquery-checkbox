@@ -113,4 +113,12 @@
     data = $(this).data()
     target = 'input[data-id="' + data.id + '"]'
     initialize target, event.type, data
+
+  $(document).on 'keypress.checkbox.data-api', toggle, (event) ->
+    keycode = event.keyCode
+    if keycode == 32 || keycode == 13
+      data = $(this).data()
+      target = 'input[data-id="' + data.id + '"]'
+      initialize target, 'click', data
+
 ).call(this)
