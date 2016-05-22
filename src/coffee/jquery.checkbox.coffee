@@ -17,7 +17,8 @@
       else if @element.val() == 'off' || @element.val() == 0 || @element.val() == '0'
         @value = false
 
-      $('#text').text(@value)
+      if typeof @options.action == 'undefined'
+        @options.action = 'load'
 
       if @options.action
         @[@options.action]()
@@ -84,9 +85,16 @@
 
 
   Plugin = (option) ->
+    action = if typeof arguments[0] == 'string' && typeof arguments[0] != 'object' && typeof arguments[0] != 'undefined' then arguments[0] else undefined
     @.each () ->
       $this = $ this
       options = $.extend {}, Checkbox.DEFAULTS, option
+      if typeof action != 'undefined'
+        $this.data('action', action)
+      else
+        $this.data('action', 'load')
+      data = $this.data()
+      options = $.extend {}, Checkbox.DEFAULTS, data, option
       new Checkbox $this, options
       return
 
@@ -121,4 +129,5 @@
       target = 'input[data-id="' + data.id + '"]'
       initialize target, 'click', data
 
+  $(elements).on 'toggle.checkbox', (event) ->
 ).call(this)
