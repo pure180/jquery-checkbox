@@ -106,10 +106,10 @@
     options = $.extend {}, Checkbox.DEFAULTS, data
     Plugin.call $(element), options
 
-  $(window).on 'load', (event) ->
+  $(window).on 'load.checkbox.data-api', (event) ->
     initialize elements, event.type
 
-  $(document).on 'click', toggle, (event) ->
+  $(document).on 'click.checkbox.data-api', toggle, (event) ->
     data = $(this).data()
     target = 'input[data-id="' + data.id + '"]'
     initialize target, event.type, data
