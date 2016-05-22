@@ -35,9 +35,8 @@
         @initialize()
 
     click: () ->
-      console.log @options
       if @value == true
-        @deactivate()
+        @uncheck()
       else if @value == false
         @activate()
 
@@ -61,11 +60,11 @@
 
     changeState: () ->
       if @value == true
-        @activate()
+        @check()
       else if @value == false
-        @deactivate()
+        @uncheck()
 
-    activate: () ->
+    check: () ->
       @element.attr 'checked', 'checked'
       @value = true
       if @element.val == 'on' || @element.val == 'off'
@@ -74,7 +73,7 @@
         @element.val(1)
       $('#' + @options.id).addClass('checked')
 
-    deactivate: () ->
+    uncheck: () ->
       @element.removeAttr 'checked'
       @value = false
       if @element.val == 'on' || @element.val == 'off'
