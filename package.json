@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "init": "npm install && bower install && coffee -c gulpfile.coffee",
-    "build_gulp" : "coffee -c gulpfile.coffee",
-    "build" : "npm run build_gulp && gulp app:clean && gulp bower && gulp build",
-    "serve" : "npm run build && gulp app:watch",
+    "build_gulp": "coffee -c gulpfile.coffee",
+    "build": "npm run build_gulp && gulp app:clean && gulp bower && gulp build",
+    "serve": "npm run build && gulp app:watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -43,5 +43,40 @@
     "gulp-util": "^3.0.7",
     "jshint": "^2.9.2",
     "main-bower-files": "^2.13.1"
-  }
+  },
+  "dependencies": {
+    "coffee": "^3.2.1",
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-cached": "^1.1.0",
+    "gulp-changed": "^1.3.0",
+    "gulp-coffee": "^2.3.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-clean-css": "^2.0.8",
+    "gulp-connect": "^4.0.0",
+    "gulp-filter": "^4.0.0",
+    "gulp-if": "^2.0.1",
+    "gulp-less": "^3.1.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-pug": "^3.0.2",
+    "gulp-jshint": "^2.0.1",
+    "gulp-plumber": "^1.1.0",
+    "gulp-pug-inheritance": "^0.1.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.3",
+    "gulp-util": "^3.0.7",
+    "jshint": "^2.9.2",
+    "main-bower-files": "^2.13.1",
+    "bower": "^1.7.9"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pure180/jquery-checkbox.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pure180/jquery-checkbox/issues"
+  },
+  "homepage": "https://github.com/pure180/jquery-checkbox#readme"
 }
