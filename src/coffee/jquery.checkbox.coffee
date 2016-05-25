@@ -31,8 +31,8 @@
       class:      'checkbox-clone'
 
     load: () ->
-
       if @element[0].style.display != 'none' || !@element.is '.hidden'
+        if @element.next().is('.' + @options.class) then return
         @randomID = @options.toggle + '_' + Math.floor((Math.random() * 1000000) + 10)
         @initialize()
 
@@ -79,7 +79,8 @@
       else
         @element.val(1)
 
-      $('#' + @options.id).addClass('checked')
+      if @element.next().is('.' + @options.class)
+        @element.next().addClass('checked')
       @eventListener('checked', @options.action)
 
     uncheck: () ->
@@ -91,7 +92,8 @@
       else
         @element.val(0)
 
-      $('#' + @options.id).removeClass('checked')
+      if @element.next().is('.' + @options.class)
+        @element.next().removeClass('checked')
       @eventListener('unchecked', @options.action)
 
     eventListener: (name, action) ->
@@ -145,6 +147,4 @@
       target = 'input[data-id="' + data.id + '"]'
       initialize target, 'click', data
 
-  $(elements).on 'toggle.checkbox', (event) ->
-    #console.log(event)
 ).call(this)
